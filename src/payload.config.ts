@@ -38,7 +38,7 @@ export default buildConfig({
   collections: [Users, Media, Industries, CaseStudies, BlogPosts],
   globals: [SiteSettings, SolutionsContent],
   cors: ['http://localhost:3000'],
-  secret: process.env.PAYLOAD_SECRET || '',
+  secret: process.env.PAYLOAD_SECRET || 'unsecure-build-secret',
   sharp,
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),

@@ -9,6 +9,9 @@ import { getSiteSettings } from '@/lib/getSiteSettings'
 
 import './globals.css'
 
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
+
 export async function generateMetadata() {
   const settings = await getSiteSettings()
   
