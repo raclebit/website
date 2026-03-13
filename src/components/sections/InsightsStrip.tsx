@@ -7,6 +7,7 @@ import { useScrollReveal } from '@/hooks/useScrollReveal'
 import { AnimatedText } from '@/components/ui/AnimatedText'
 
 interface InsightsStripProps {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   posts: any[]
 }
 
@@ -28,6 +29,7 @@ export const InsightsStrip: React.FC<InsightsStripProps> = ({ posts }) => {
         
         <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {posts.map((post, idx) => {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             const imageUrl = post.coverImage && typeof post.coverImage === 'object' ? (post.coverImage as any).url : undefined
             return (
               <BlogCard 

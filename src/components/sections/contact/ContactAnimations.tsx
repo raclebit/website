@@ -1,11 +1,9 @@
 'use client'
 
-import React, { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 import { gsap, ScrollTrigger } from '@/lib/gsap'
 
 export const ContactAnimations = () => {
-  const containerRef = useRef<HTMLDivElement>(null)
-
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger)
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return

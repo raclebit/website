@@ -13,9 +13,6 @@ import { BlogPosts } from './collections/BlogPosts'
 import { SiteSettings } from './globals/SiteSettings'
 import { SolutionsContent } from './globals/SolutionsContent'
 
-import { AdminLogo } from './components/admin/AdminLogo'
-import { AdminIcon } from './components/admin/AdminIcon'
-
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 

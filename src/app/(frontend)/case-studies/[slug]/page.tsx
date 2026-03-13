@@ -5,17 +5,8 @@ import Image from 'next/image'
 import { RichText } from '@payloadcms/richtext-lexical/react'
 import { CTASection } from '@/components/sections/CTASection'
 
-export async function generateStaticParams() {
-  const payload = await getPayloadClient()
-  const { docs } = await payload.find({
-    collection: 'case-studies',
-    limit: 100,
-  })
-
-  return docs.map((doc) => ({
-    slug: doc.slug,
-  }))
-}
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
@@ -48,6 +39,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
   const study = docs[0]
   if (!study) return notFound()
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const imageUrl = study.coverImage && typeof study.coverImage === 'object' ? (study.coverImage as any).url : undefined
   const industryLabel = study.industry && typeof study.industry === 'object' ? study.industry.name : study.industry
 
@@ -88,6 +80,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
             <div className="sticky top-32">
               <h3 className="font-heading text-xl mb-6">Technologies Used</h3>
               <div className="flex flex-wrap gap-2">
+                {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
                 {study.technologies?.map((tech: any, idx: number) => (
                   <span key={idx} className="border border-gray-200 px-3 py-1 font-sans text-sm text-gray-600">
                     {tech.name}
@@ -102,6 +95,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
               <div className="mb-16">
                 <h2 className="font-heading text-3xl mb-6">The Problem</h2>
                 <div className="font-sans text-gray-700 leading-relaxed">
+                  {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
                   <RichText data={study.problem as any} />
                 </div>
               </div>
@@ -111,6 +105,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
               <div className="mb-16">
                 <h2 className="font-heading text-3xl mb-6">The Solution</h2>
                 <div className="font-sans text-gray-700 leading-relaxed">
+                  {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
                   <RichText data={study.solution as any} />
                 </div>
               </div>
@@ -120,6 +115,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
               <div className="mb-16">
                 <h2 className="font-heading text-3xl mb-6">The Result</h2>
                 <div className="font-sans text-gray-700 leading-relaxed">
+                  {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
                   <RichText data={study.result as any} />
                 </div>
               </div>

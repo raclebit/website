@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
 import React from 'react'
 import { ContactForm } from '@/components/sections/contact/ContactForm'
 import { ContactAnimations } from '@/components/sections/contact/ContactAnimations'

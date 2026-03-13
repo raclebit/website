@@ -15,7 +15,7 @@ interface NavbarProps {
 }
 
 export const Navbar = ({ logoLightUrl, logoDarkUrl, logoAlt, siteName }: NavbarProps) => {
-  const [isOpen, setIsOpen] = useState(false)
+  const [_isOpen, setIsOpen] = useState(false)
   const navRef = useRef<HTMLElement>(null)
   const pathname = usePathname()
 
@@ -23,10 +23,6 @@ export const Navbar = ({ logoLightUrl, logoDarkUrl, logoAlt, siteName }: NavbarP
   const overlayRef = useRef<HTMLDivElement>(null)
   const itemRefs = useRef<(HTMLDivElement | null)[]>([])
   const footerInfoRef = useRef<HTMLDivElement>(null)
-
-  // Hamburger refs
-  const line1Ref = useRef<HTMLSpanElement>(null)
-  const line2Ref = useRef<HTMLSpanElement>(null)
 
   const links = [
     { label: 'Home', href: '/' },

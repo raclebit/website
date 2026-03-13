@@ -7,6 +7,7 @@ import { useScrollReveal } from '@/hooks/useScrollReveal'
 import { AnimatedText } from '@/components/ui/AnimatedText'
 
 interface SelectedWorkProps {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   caseStudies: any[]
 }
 
@@ -28,6 +29,7 @@ export const SelectedWork: React.FC<SelectedWorkProps> = ({ caseStudies }) => {
         
         <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {caseStudies.map((study, idx) => {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             const imageUrl = study.coverImage && typeof study.coverImage === 'object' ? (study.coverImage as any).url : undefined
             const industryLabel = study.industry && typeof study.industry === 'object' ? study.industry.name : study.industry
             

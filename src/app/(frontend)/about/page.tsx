@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
 import React from 'react'
 import { AboutHero } from '@/components/sections/about/AboutHero'
 import { Philosophy } from '@/components/sections/about/Philosophy'

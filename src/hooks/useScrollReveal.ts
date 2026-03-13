@@ -30,6 +30,7 @@ interface RevealOptions {
   targetValue?: number // for countUp
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function useScrollReveal<T extends HTMLElement = any>(type: RevealType, options: RevealOptions = {}) {
   const ref = useRef<T>(null)
 
@@ -55,7 +56,7 @@ export function useScrollReveal<T extends HTMLElement = any>(type: RevealType, o
     } = options
 
     const ctx = gsap.context(() => {
-      let tween: gsap.core.Tween | gsap.core.Timeline | undefined
+      let _tween: gsap.core.Tween | gsap.core.Timeline | undefined
 
       const scrollTriggerObj = {
         trigger: el,
@@ -67,74 +68,74 @@ export function useScrollReveal<T extends HTMLElement = any>(type: RevealType, o
 
       switch (type) {
         case 'fadeUp':
-          tween = gsap.fromTo(el, 
+          _tween = gsap.fromTo(el, 
             { y: 60, opacity: 0 }, 
             { y: 0, opacity: 1, duration, delay, ease: 'power3.out', scrollTrigger: scrollTriggerObj }
           )
           break
         case 'fadeDown':
-          tween = gsap.fromTo(el, 
+          _tween = gsap.fromTo(el, 
             { y: -60, opacity: 0 }, 
             { y: 0, opacity: 1, duration, delay, ease: 'power3.out', scrollTrigger: scrollTriggerObj }
           )
           break
         case 'fadeLeft':
-          tween = gsap.fromTo(el, 
+          _tween = gsap.fromTo(el, 
             { x: -60, opacity: 0 }, 
             { x: 0, opacity: 1, duration, delay, ease: 'power3.out', scrollTrigger: scrollTriggerObj }
           )
           break
         case 'fadeRight':
-          tween = gsap.fromTo(el, 
+          _tween = gsap.fromTo(el, 
             { x: 60, opacity: 0 }, 
             { x: 0, opacity: 1, duration, delay, ease: 'power3.out', scrollTrigger: scrollTriggerObj }
           )
           break
         case 'scaleUp':
-          tween = gsap.fromTo(el, 
+          _tween = gsap.fromTo(el, 
             { scale: 0.88, opacity: 0 }, 
             { scale: 1, opacity: 1, duration, delay, ease: 'back.out(1.7, 0.3)', scrollTrigger: scrollTriggerObj }
           )
           break
         case 'clipTop':
-          tween = gsap.fromTo(el,
+          _tween = gsap.fromTo(el,
             { clipPath: 'inset(0 0 100% 0)' },
             { clipPath: 'inset(0 0 0% 0)', duration: duration || 1.2, delay, ease: 'power4.inOut', scrollTrigger: scrollTriggerObj }
           )
           break
         case 'clipBottom':
-          tween = gsap.fromTo(el,
+          _tween = gsap.fromTo(el,
             { clipPath: 'inset(100% 0 0 0)' },
             { clipPath: 'inset(0% 0 0 0)', duration: duration || 1.2, delay, ease: 'power4.inOut', scrollTrigger: scrollTriggerObj }
           )
           break
         case 'blurUp':
-          tween = gsap.fromTo(el,
+          _tween = gsap.fromTo(el,
             { y: 30, filter: 'blur(12px)', opacity: 0 },
             { y: 0, filter: 'blur(0px)', opacity: 1, duration, delay, ease: 'power2.out', scrollTrigger: scrollTriggerObj }
           )
           break
         case 'rotateUp':
-          tween = gsap.fromTo(el,
+          _tween = gsap.fromTo(el,
             { rotationX: 60, y: 40, opacity: 0, transformOrigin: 'bottom center' },
             { rotationX: 0, y: 0, opacity: 1, duration, delay, ease: 'power3.out', scrollTrigger: scrollTriggerObj }
           )
           break
         case 'stagger':
           const children = el.children
-          tween = gsap.fromTo(children,
+          _tween = gsap.fromTo(children,
             { y: 40, opacity: 0 },
             { y: 0, opacity: 1, duration, delay, stagger, ease: 'power3.out', scrollTrigger: scrollTriggerObj }
           )
           break
         case 'lineGrow':
-          tween = gsap.fromTo(el,
+          _tween = gsap.fromTo(el,
             { scaleX: 0, transformOrigin: 'left center' },
             { scaleX: 1, duration, delay, ease: 'none', scrollTrigger: scrollTriggerObj }
           )
           break
         case 'parallax':
-          tween = gsap.fromTo(el,
+          _tween = gsap.fromTo(el,
             { y: -20 },
             { y: 20, ease: 'none', scrollTrigger: { trigger: el, start: 'top bottom', end: 'bottom top', scrub: true } }
           )
@@ -142,7 +143,7 @@ export function useScrollReveal<T extends HTMLElement = any>(type: RevealType, o
         case 'countUp':
           // Counter animation
           const obj = { val: 0 }
-          tween = gsap.to(obj, {
+          _tween = gsap.to(obj, {
             val: targetValue,
             duration: 1.5,
             delay,
@@ -163,12 +164,12 @@ export function useScrollReveal<T extends HTMLElement = any>(type: RevealType, o
           // For the hook, we will just apply a fadeUp on the entire element as a fallback if not manually split.
           const parts = el.querySelectorAll('.split-item')
           if(parts.length) {
-            tween = gsap.fromTo(parts,
+            _tween = gsap.fromTo(parts,
               { y: 50, opacity: 0 },
               { y: 0, opacity: 1, duration, delay, stagger: type === 'splitChars' ? 0.025 : 0.05, ease: 'power4.out', scrollTrigger: scrollTriggerObj }
             )
           } else {
-            tween = gsap.fromTo(el,
+            _tween = gsap.fromTo(el,
               { y: 30, opacity: 0 },
               { y: 0, opacity: 1, duration, delay, ease: 'power4.out', scrollTrigger: scrollTriggerObj }
             )

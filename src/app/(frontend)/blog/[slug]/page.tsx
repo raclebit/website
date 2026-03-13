@@ -6,17 +6,8 @@ import { RichText } from '@payloadcms/richtext-lexical/react'
 import { formatDate } from '@/lib/utils'
 import { CTASection } from '@/components/sections/CTASection'
 
-export async function generateStaticParams() {
-  const payload = await getPayloadClient()
-  const { docs } = await payload.find({
-    collection: 'blog-posts',
-    limit: 100,
-  })
-
-  return docs.map((doc) => ({
-    slug: doc.slug,
-  }))
-}
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
@@ -49,6 +40,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   const post = docs[0]
   if (!post) return notFound()
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const imageUrl = post.coverImage && typeof post.coverImage === 'object' ? (post.coverImage as any).url : undefined
 
   return (
@@ -97,6 +89,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
       <div className="container mx-auto px-6 pb-32 max-w-3xl">
         <div className="prose prose-lg prose-gray max-w-none prose-headings:font-heading prose-headings:font-medium prose-p:font-sans prose-p:text-gray-700">
+          {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
           <RichText data={post.content as any} />
         </div>
       </div>

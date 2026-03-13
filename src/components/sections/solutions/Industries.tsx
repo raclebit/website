@@ -4,6 +4,7 @@ import React from 'react'
 import { useScrollReveal } from '@/hooks/useScrollReveal'
 import { AnimatedText } from '@/components/ui/AnimatedText'
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const Industries = ({ industries }: { industries: any[] }) => {
   const cardsRef = useScrollReveal('blurUp', { stagger: 0.15 })
 
