@@ -28,7 +28,7 @@ export const AboutHero = () => {
               <AnimatedText text="We Engineer Digital Systems." />
             </h1>
             <p ref={textRef} className="font-sans text-xl text-gray-600 leading-relaxed max-w-lg">
-              Raclebit is a digital technology studio based in Indonesia. We believe that software shouldn't just look good—it must be architected to scale, perform, and endure.
+              Raclebit is a digital technology studio based in Indonesia. We believe that software shouldn&apos;t just look good—it must be architected to scale, perform, and endure.
             </p>
           </div>
           

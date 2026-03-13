@@ -20,7 +20,7 @@ export default function ContactPage() {
         
         {/* Headline */}
         <h1 className="text-[clamp(48px,7vw,100px)] font-heading leading-[0.92] tracking-tight text-[#1B1B1B]">
-          <span className="block animate-fade-in-up" style={{ animationDelay: '0.3s', animationFillMode: 'both' }}>Let's Build</span>
+          <span className="block animate-fade-in-up" style={{ animationDelay: '0.3s', animationFillMode: 'both' }}>Let&apos;s Build</span>
           <span className="block text-[#1B1B1B]/20 italic animate-fade-in-up" style={{ animationDelay: '0.42s', animationFillMode: 'both' }}>Something</span>
           <span className="block animate-fade-in-up" style={{ animationDelay: '0.54s', animationFillMode: 'both' }}>That Lasts.</span>
         </h1>
@@ -36,7 +36,7 @@ export default function ContactPage() {
           <div className="max-w-2xl mx-auto lg:mx-0">
             <h2 className="text-3xl font-heading font-semibold mb-2 animate-fade-in-up" style={{ animationDelay: '0.5s', animationFillMode: 'both' }}>Start a Conversation</h2>
             <p className="text-sm text-[#1B1B1B]/50 mb-12 font-sans animate-fade-in-up" style={{ animationDelay: '0.6s', animationFillMode: 'both' }}>
-              Tell us about your project. We'll get back within 24 hours.
+              Tell us about your project. We&apos;ll get back within 24 hours.
             </p>
             <ContactForm />
           </div>

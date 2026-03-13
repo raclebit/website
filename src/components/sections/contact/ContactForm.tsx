@@ -22,7 +22,7 @@ export const ContactForm = () => {
           </svg>
         </div>
         <h3 className="font-instrument-sans text-3xl font-semibold mb-2">Message Sent</h3>
-        <p className="font-sans text-[#1B1B1B]/60 text-sm">We'll be in touch shortly.</p>
+        <p className="font-sans text-[#1B1B1B]/60 text-sm">We&apos;ll be in touch shortly.</p>
       </div>
     )
   }

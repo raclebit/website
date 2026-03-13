@@ -1,5 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 
 interface FooterProps {
   logoLightUrl?: string
@@ -16,7 +17,14 @@ export const Footer = ({ logoDarkUrl, logoAlt, siteName }: FooterProps) => {
           <div className="col-span-1 md:col-span-1">
             <Link href="/" className="font-heading font-bold text-2xl tracking-tighter flex items-center gap-2 mb-6">
               {logoDarkUrl ? (
-                <img src={logoDarkUrl} alt={logoAlt || 'Raclebit'} className="h-8 w-auto object-contain" />
+                <div className="relative h-8 w-32">
+                  <Image 
+                    src={logoDarkUrl} 
+                    alt={logoAlt || 'Raclebit'} 
+                    fill
+                    className="object-contain object-left" 
+                  />
+                </div>
               ) : (
                 <>
                   <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center">
