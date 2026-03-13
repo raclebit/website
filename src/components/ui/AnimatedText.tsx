@@ -17,6 +17,7 @@ export const AnimatedText: React.FC<AnimatedTextProps> = ({
   el: Wrapper = 'div',
   delay = 0 
 }) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const containerRef = useRef<any>(null)
 
   useEffect(() => {

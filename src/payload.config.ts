@@ -13,9 +13,6 @@ import { BlogPosts } from './collections/BlogPosts'
 import { SiteSettings } from './globals/SiteSettings'
 import { SolutionsContent } from './globals/SolutionsContent'
 
-import { AdminLogo } from './components/admin/AdminLogo'
-import { AdminIcon } from './components/admin/AdminIcon'
-
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
@@ -41,7 +38,7 @@ export default buildConfig({
   collections: [Users, Media, Industries, CaseStudies, BlogPosts],
   globals: [SiteSettings, SolutionsContent],
   cors: ['http://localhost:3000'],
-  secret: process.env.PAYLOAD_SECRET || '',
+  secret: process.env.PAYLOAD_SECRET || 'unsecure-build-secret',
   sharp,
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),

@@ -39,7 +39,7 @@ export const HowWeWork = () => {
       }
     )
 
-    stepsEls.forEach((step, idx) => {
+    stepsEls.forEach((step, _idx) => {
       gsap.fromTo(step,
         { opacity: 0, x: -30 },
         {

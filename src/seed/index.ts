@@ -61,7 +61,9 @@ const seed = async () => {
 
   // Create Industries
   const industriesCount = await payload.find({ collection: 'industries' })
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let finServiceId: any = null
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let ecomServiceId: any = null
 
   if (industriesCount.totalDocs === 0) {

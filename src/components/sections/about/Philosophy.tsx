@@ -13,7 +13,7 @@ export const Philosophy = () => {
       <section className="py-32 bg-[#FAFAFA] border-y border-gray-200 relative">
         {/* Decorative Quote */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[40vw] font-heading text-black/[0.02] leading-none pointer-events-none select-none font-bold">
-          "
+          &quot;
         </div>
         
         <div className="container mx-auto px-6 relative z-10 text-center max-w-4xl">

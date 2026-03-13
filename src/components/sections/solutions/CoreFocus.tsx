@@ -4,6 +4,7 @@ import React from 'react'
 import { useScrollReveal } from '@/hooks/useScrollReveal'
 import { AnimatedText } from '@/components/ui/AnimatedText'
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const CoreFocus = ({ focus }: { focus: any[] }) => {
   const listRef = useScrollReveal('stagger')
 

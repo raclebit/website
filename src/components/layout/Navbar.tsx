@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { gsap, ScrollTrigger } from '@/lib/gsap'
 import { cn } from '@/lib/utils'
@@ -14,7 +15,7 @@ interface NavbarProps {
 }
 
 export const Navbar = ({ logoLightUrl, logoDarkUrl, logoAlt, siteName }: NavbarProps) => {
-  const [isOpen, setIsOpen] = useState(false)
+  const [_isOpen, setIsOpen] = useState(false)
   const navRef = useRef<HTMLElement>(null)
   const pathname = usePathname()
 
@@ -22,10 +23,6 @@ export const Navbar = ({ logoLightUrl, logoDarkUrl, logoAlt, siteName }: NavbarP
   const overlayRef = useRef<HTMLDivElement>(null)
   const itemRefs = useRef<(HTMLDivElement | null)[]>([])
   const footerInfoRef = useRef<HTMLDivElement>(null)
-
-  // Hamburger refs
-  const line1Ref = useRef<HTMLSpanElement>(null)
-  const line2Ref = useRef<HTMLSpanElement>(null)
 
   const links = [
     { label: 'Home', href: '/' },
@@ -182,7 +179,15 @@ export const Navbar = ({ logoLightUrl, logoDarkUrl, logoAlt, siteName }: NavbarP
         <div className="container mx-auto px-6 h-20 flex items-center justify-between">
           <Link href="/" className="font-heading font-bold text-2xl tracking-tighter flex items-center gap-2 relative z-50">
             {logoLightUrl ? (
-              <img src={logoLightUrl} alt={logoAlt || 'Raclebit'} className="h-8 w-auto object-contain" />
+              <div className="relative h-8 w-32">
+                <Image 
+                  src={logoLightUrl} 
+                  alt={logoAlt || 'Raclebit'} 
+                  fill
+                  className="object-contain object-left" 
+                  priority
+                />
+              </div>
             ) : (
               <>
                 <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -252,7 +257,14 @@ export const Navbar = ({ logoLightUrl, logoDarkUrl, logoAlt, siteName }: NavbarP
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <Link href="/" onClick={closeMenu} className="font-heading font-bold text-2xl tracking-tighter flex items-center gap-2 text-[#FAFAFA]">
             {logoDarkUrl ? (
-              <img src={logoDarkUrl} alt={logoAlt || 'Raclebit'} className="h-8 w-auto object-contain" />
+              <div className="relative h-8 w-32">
+                <Image 
+                  src={logoDarkUrl} 
+                  alt={logoAlt || 'Raclebit'} 
+                  fill
+                  className="object-contain object-left" 
+                />
+              </div>
             ) : (
               <>
                 <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">

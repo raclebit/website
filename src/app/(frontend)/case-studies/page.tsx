@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
 import React from 'react'
 import { getPayloadClient } from '@/lib/payload'
 import { CaseStudyCard } from '@/components/ui/CaseStudyCard'
@@ -28,6 +30,7 @@ export default async function CaseStudiesPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mt-16">
           {caseStudies.map((study, idx) => {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             const imageUrl = study.coverImage && typeof study.coverImage === 'object' ? (study.coverImage as any).url : undefined
             const industryLabel = study.industry && typeof study.industry === 'object' ? study.industry.name : study.industry
             

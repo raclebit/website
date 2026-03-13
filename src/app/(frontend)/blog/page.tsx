@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
 import React from 'react'
 import { getPayloadClient } from '@/lib/payload'
 import { BlogCard } from '@/components/ui/BlogCard'
@@ -29,6 +31,7 @@ export default async function BlogPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16">
           {posts.map((post, idx) => {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             const imageUrl = post.coverImage && typeof post.coverImage === 'object' ? (post.coverImage as any).url : undefined
             
             return (

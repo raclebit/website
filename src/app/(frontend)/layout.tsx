@@ -9,6 +9,9 @@ import { getSiteSettings } from '@/lib/getSiteSettings'
 
 import './globals.css'
 
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
+
 export async function generateMetadata() {
   const settings = await getSiteSettings()
   
@@ -19,7 +22,9 @@ export async function generateMetadata() {
     },
     description: 'Technology partner focused on system architecture, scalability, and long-term reliability.',
     icons: {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       icon: settings?.favicon && typeof settings.favicon === 'object' ? (settings.favicon as any).url : '/favicon.ico',
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       apple: settings?.favicon && typeof settings.favicon === 'object' ? (settings.favicon as any).url : '/apple-touch-icon.png',
     }
   }
@@ -32,7 +37,9 @@ export default async function RootLayout({
 }) {
   const settings = await getSiteSettings()
   
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const logoLightUrl = settings?.logoLight && typeof settings.logoLight === 'object' ? (settings.logoLight as any).url : undefined
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const logoDarkUrl = settings?.logoDark && typeof settings.logoDark === 'object' ? (settings.logoDark as any).url : undefined
   const logoAlt = settings?.logoAlt || 'Raclebit'
   const siteName = settings?.siteName || 'Raclebit'
