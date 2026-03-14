@@ -33,10 +33,11 @@ export default buildConfig({
   db: postgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URI || '',
-      ssl: false,
+      ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
       max: 10,
       idleTimeoutMillis: 30000,
-      connectionTimeoutMillis: 10000,
+      connectionTimeoutMillis: 15000,
+      allowExitOnIdle: true,
     },
     migrationDir: path.resolve(dirname, 'migrations'),
   }),
@@ -44,6 +45,7 @@ export default buildConfig({
   globals: [SiteSettings, SolutionsContent],
   cors: [
     'http://localhost:3000',
+    'http://localhost:8080',
     'https://website-production-e105.up.railway.app',
     process.env.NEXT_PUBLIC_SERVER_URL || '',
   ].filter(Boolean),
