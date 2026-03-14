@@ -36,6 +36,9 @@ export const Navbar = ({ logoLightUrl, logoDarkUrl, logoAlt, siteName }: NavbarP
     gsap.registerPlugin(ScrollTrigger)
     if (!navRef.current) return
 
+    // Initialize overlay state
+    gsap.set(overlayRef.current, { yPercent: -100, visibility: 'hidden' })
+
     // 3. Pastikan navbar SELALU visible saat load/pathname berubah
     gsap.set(navRef.current, { yPercent: 0 })
     let lastScrollY = window.scrollY
@@ -98,12 +101,17 @@ export const Navbar = ({ logoLightUrl, logoDarkUrl, logoAlt, siteName }: NavbarP
   }, [pathname])
 
   const openMenu = () => {
+    if (_isOpen) return
     setIsOpen(true)
     const tl = gsap.timeline()
+
+    // Ensure it's visible before animating
+    gsap.set(overlayRef.current, { visibility: 'visible' })
 
     // 1. Overlay slide turun dari atas
     tl.to(overlayRef.current, {
       yPercent: 0,        // dari -100% -> 0
+      y: 0,               // override inline transform
       duration: 0.55,
       ease: 'power4.inOut',
     })
@@ -125,8 +133,12 @@ export const Navbar = ({ logoLightUrl, logoDarkUrl, logoAlt, siteName }: NavbarP
   }
 
   const closeMenu = () => {
+    if (!_isOpen) return
     const tl = gsap.timeline({
-      onComplete: () => setIsOpen(false)
+      onComplete: () => {
+        setIsOpen(false)
+        gsap.set(overlayRef.current, { visibility: 'hidden' })
+      }
     })
 
     // 1. Items slide keluar ke bawah (reverse stagger)
@@ -200,7 +212,7 @@ export const Navbar = ({ logoLightUrl, logoDarkUrl, logoAlt, siteName }: NavbarP
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-8 font-sans font-medium text-[11px] uppercase tracking-[0.1em]">
+          <nav className="hidden lg:flex items-center gap-8 font-sans font-medium text-[11px] uppercase tracking-[0.1em]">
             {links.map((link) => (
               <Link 
                 key={link.href} 
@@ -219,7 +231,7 @@ export const Navbar = ({ logoLightUrl, logoDarkUrl, logoAlt, siteName }: NavbarP
             ))}
           </nav>
           
-          <div className="hidden md:block">
+          <div className="hidden lg:block">
             <Link 
               href="/contact"
               className="font-sans font-medium text-[12px] uppercase tracking-wider px-5 py-2.5 border border-black hover:bg-black hover:text-white transition-colors duration-250"
@@ -230,8 +242,10 @@ export const Navbar = ({ logoLightUrl, logoDarkUrl, logoAlt, siteName }: NavbarP
 
           {/* Mobile Toggle */}
           <button 
-            className="md:hidden relative z-50 p-2 w-10 h-10 flex flex-col items-end justify-center gap-[6px] focus:outline-none"
-            onClick={openMenu}
+            className="lg:hidden relative z-50 p-2 w-10 h-10 flex flex-col items-end justify-center gap-[6px] focus:outline-none"
+            onClick={_isOpen ? closeMenu : openMenu}
+            aria-expanded={_isOpen}
+            aria-label="Toggle mobile menu"
           >
             <span className="block h-[2px] w-6 bg-black" />
             <span className="block h-[2px] w-4 bg-black" />
@@ -250,7 +264,7 @@ export const Navbar = ({ logoLightUrl, logoDarkUrl, logoAlt, siteName }: NavbarP
           display: 'flex',
           flexDirection: 'column',
           padding: '32px',
-          transform: 'translateY(-100%)',
+          visibility: 'hidden',
         }}
       >
         {/* Header row dalam overlay */}
