@@ -4,7 +4,7 @@ import { withPayload } from '@payloadcms/next/withPayload'
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   output: 'standalone',
-  serverExternalPackages: ['@payloadcms/db-postgres', 'pg'],
+  serverExternalPackages: ['@payloadcms/db-postgres', 'pg', 'kysely'],
   images: {
     remotePatterns: [
       {

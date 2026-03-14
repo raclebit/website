@@ -38,6 +38,7 @@ export default buildConfig({
       idleTimeoutMillis: 30000,
       connectionTimeoutMillis: 5000,
     },
+    migrationDir: path.resolve(dirname, 'migrations'),
   }),
   collections: [Users, Media, Industries, CaseStudies, BlogPosts],
   globals: [SiteSettings, SolutionsContent],
