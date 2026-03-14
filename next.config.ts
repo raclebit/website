@@ -25,6 +25,11 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: 'https',
+        hostname: 'company.raclebit.com',
+        pathname: '/media/**',
+      },
+      {
+        protocol: 'https',
         hostname: '**',
         pathname: '/media/**',
       },
