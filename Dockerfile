@@ -43,7 +43,7 @@ RUN mkdir .next && chown nextjs:nodejs .next
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 COPY --from=builder /app/start.sh ./start.sh
-COPY --from=builder /app/migrate.js ./migrate.js
+COPY --from=builder /app/migrate.cjs ./migrate.cjs
 RUN chmod +x start.sh
 
 USER nextjs

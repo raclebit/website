@@ -2,7 +2,9 @@
 set -e
 
 echo "Running PayloadCMS migrations..."
-node migrate.js || echo "Migration skipped or already done"
+node migrate.cjs || echo "Migration skipped"
 
 echo "Starting Next.js server..."
-exec HOSTNAME=0.0.0.0 PORT=${PORT:-8080} node server.js
+export HOSTNAME="0.0.0.0"
+export PORT="${PORT:-8080}"
+exec node server.js
