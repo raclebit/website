@@ -47,4 +47,4 @@ USER nextjs
 EXPOSE 3000
 ENV HOSTNAME="0.0.0.0"
 
-CMD ["sh", "-c", "HOSTNAME=0.0.0.0 PORT=${PORT:-3000} node server.js"]
+CMD ["sh", "-c", "HOSTNAME=0.0.0.0 node server.js"]
