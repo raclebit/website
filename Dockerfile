@@ -42,10 +42,13 @@ COPY --from=builder /app/public ./public
 RUN mkdir .next && chown nextjs:nodejs .next
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+COPY --from=builder /app/start.sh ./start.sh
+COPY --from=builder /app/migrate.js ./migrate.js
+RUN chmod +x start.sh
 
 USER nextjs
 EXPOSE 3000
 ENV HOSTNAME="0.0.0.0"
 ENV PORT=8080
 
-CMD ["sh", "-c", "PORT=${PORT:-8080} HOSTNAME=0.0.0.0 node server.js"]
+CMD ["sh", "start.sh"]
