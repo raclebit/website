@@ -30,6 +30,11 @@ RUN \
   else echo "Lockfile not found." && exit 1; \
   fi
 
+# Run migrations during build time when node_modules are available
+RUN DATABASE_URI=postgresql://postgres:nfOWDHRHeYoLoCgQwUsYtmfdnVftYkRQ@postgres.railway.internal:5432/railway \
+    PAYLOAD_SECRET=f27fc5c5408ded659004cc89 \
+    pnpm run payload migrate || echo "Migration failed or skipped"
+
 FROM base AS runner
 WORKDIR /app
 ENV NODE_ENV=production
