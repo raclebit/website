@@ -42,7 +42,11 @@ export default buildConfig({
   }),
   collections: [Users, Media, Industries, CaseStudies, BlogPosts],
   globals: [SiteSettings, SolutionsContent],
-  cors: ['http://localhost:3000'],
+  cors: [
+    'http://localhost:3000',
+    'https://website-production-e105.up.railway.app',
+    process.env.NEXT_PUBLIC_SERVER_URL || '',
+  ].filter(Boolean),
   secret: process.env.PAYLOAD_SECRET || 'unsecure-build-secret',
   sharp,
   typescript: {
